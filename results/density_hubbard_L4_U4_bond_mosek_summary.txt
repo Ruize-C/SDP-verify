@@ -1,0 +1,28 @@
+model=weakly_coupled_extended_spinful_hubbard_dimer_chain
+L=4
+U=4.0
+perturbation=density
+selected=bond_kinetic
+solver=MOSEK
+reference_solver_eps_abs=1e-10
+reference_solver_eps_rel=1e-10
+response_field_step=0.005
+response_solver_eps_abs=1e-10
+response_solver_eps_rel=1e-10
+mismatch_solver_eps_abs=1e-8
+mismatch_solver_eps_rel=1e-8
+reference_phys_energy=-1.6568542494923806
+reference_sdp_energy=-1.6568542494866443
+reference_sdp_minus_phys=5.736300323633259e-12
+reference_physical_gap=0.8284271247461882
+reference_moment_error_norm=1.0059582430279905e-7
+reference_sdp_status=OPTIMAL
+response_diff_norm=3.035474211714218e-5
+physical_moments = [1.4142135624e+00, 1.4142135624e+00]
+sdp_moments = [1.4142136336e+00, 1.4142136334e+00]
+physical_chi =
+  [7.0711341028e-01, -4.4408920985e-14]
+  [0.0000000000e+00, 7.0711341028e-01]
+sdp_chi =
+  [7.0708355532e-01, 4.4370773722e-08]
+  [-7.1571217841e-07, 7.0710797178e-01]

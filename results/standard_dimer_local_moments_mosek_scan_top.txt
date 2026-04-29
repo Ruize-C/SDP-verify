@@ -1,0 +1,13 @@
+Dimer-local MOSEK moment scan for standard dimerized Hubbard
+L=4 U=2 theta=+/-0.005,+/-0.01
+stability near 1 suggests first-order; near 0.5 suggests second-order
+selected=dimer_triplet0_projector ratio005=7.021089e-05 ratio010=1.185061e-04 stability=0.592 quad005=1.404218e-02 response=5.804e-10 exact=1.465e-09 moment=2.266e-11
+selected=bond_kinetic ratio005=5.960827e-03 ratio010=1.166566e-02 stability=0.511 quad005=1.192165e+00 response=4.864e-07 exact=1.465e-09 moment=9.374e-08
+selected=dimer_spin_z_corr ratio005=2.120171e-03 ratio010=4.197025e-03 stability=0.505 quad005=4.240342e-01 response=3.364e-08 exact=1.465e-09 moment=1.166e-08
+selected=dimer_spin_dot ratio005=6.360511e-03 ratio010=1.259107e-02 stability=0.505 quad005=1.272102e+00 response=1.436e-07 exact=1.465e-09 moment=3.499e-08
+selected=dimer_spin_exchange ratio005=8.480681e-03 ratio010=1.678810e-02 stability=0.505 quad005=1.696136e+00 response=1.527e-07 exact=1.465e-09 moment=4.665e-08
+selected=dimer_singlet_projector ratio005=8.410470e-03 ratio010=1.666828e-02 stability=0.505 quad005=1.682094e+00 response=1.101e-07 exact=1.465e-09 moment=4.663e-08
+selected=double_occupancy ratio005=7.035509e-03 ratio010=1.395267e-02 stability=0.504 quad005=1.407102e+00 response=1.560e-07 exact=1.465e-09 moment=4.739e-08
+selected=double_occupancy_sites ratio005=5.042892e-03 ratio010=1.007504e-02 stability=0.501 quad005=1.008578e+00 response=6.283e-07 exact=1.465e-09 moment=3.351e-08
+selected=dimer_pair_hopping ratio005=5.423155e-03 ratio010=1.086716e-02 stability=0.499 quad005=1.084631e+00 response=9.692e-08 exact=1.465e-09 moment=4.654e-08
+selected=double_occupancy_imbalance ratio005=1.167532e-03 ratio010=2.887221e-03 stability=0.404 quad005=2.335064e-01 response=1.082e-06 exact=1.465e-09 moment=6.932e-13
