@@ -55,6 +55,9 @@ H(\theta,h)=H_0+\theta V-\sum_{a=1}^s h_aM_a.
 
 ## Reported Quantities
 
+The quantities in this subsection are diagnostics used in this numerical
+report, not standard names from the Hubbard-model literature.
+
 - Reference energy error:
   \(|E_{\mathrm{SDP}}(H_0)-E_{\mathrm{phys}}(H_0)|\).
 - Selected-moment error:
@@ -68,6 +71,24 @@ H(\theta,h)=H_0+\theta V-\sum_{a=1}^s h_aM_a.
   This ratio is used to estimate \(c_{\mathrm{mis}}\).
 - Solver:
   all reported SDP values below were computed with MOSEK.
+
+## Terminology And References
+
+- The terms "Hubbard model", "spinful Hubbard chain", "hopping", "onsite
+  interaction", "half filling", and "double occupancy" follow the standard
+  Hubbard-model terminology; see Hubbard's original paper and standard
+  treatments of the one-dimensional Hubbard model [[1](#references),
+  [2](#references)].
+- The words "dimerized" and "alternating" refer to chains with alternating
+  strong and weak bonds; this terminology is standard in the dimerized or
+  alternating Hubbard-chain literature [[3](#references), [4](#references)].
+- The term "extended Hubbard model" refers here to adding an intersite
+  density-density interaction to the onsite Hubbard interaction; this is the
+  standard usage in the extended-Hubbard literature [[5](#references)].
+- "Response matrix" is used in the usual static linear-response sense,
+  following the Kubo linear-response terminology [[6](#references)].
+- "Semidefinite programming" follows the standard convex-optimization
+  terminology of Vandenberghe and Boyd [[7](#references)].
 
 ## Model 1: Standard Dimerized Spinful Hubbard Chain
 
@@ -85,27 +106,27 @@ The reported scan used \(L=4\), \(U=2\), \(t_d=1\), and
 
 The selected moment families tested were:
 
-- Dimer-local bond kinetic moments:
+- Bond kinetic moments on strong dimers:
   \(M_r=K_{2r-1,2r}\).
-- Dimer-local double occupancy moments:
+- Double occupancy moments on strong dimers:
   \(M_r=D_{2r-1}+D_{2r}\), and also the site-resolved versions
   \(D_{2r-1}\), \(D_{2r}\).
-- Dimer-local spin moments:
+- Spin correlation moments on strong dimers:
   \(S^z_{2r-1}S^z_{2r}\), and
   \(\mathbf S_{2r-1}\cdot\mathbf S_{2r}
   =S^z_{2r-1}S^z_{2r}
   +\frac12(S^+_{2r-1}S^-_{2r}+S^-_{2r-1}S^+_{2r})\).
-- Dimer-local pair-hopping moments:
+- Onsite-pair hopping moments between the two sites of a strong dimer:
   \(P_r=c^\dagger_{2r-1,\uparrow}c^\dagger_{2r-1,\downarrow}
   c_{2r,\downarrow}c_{2r,\uparrow}+h.c.\).
-- Dimer-local singlet/triplet projectors:
+- Singlet/triplet projectors on a strong dimer:
   \(\Pi_{s,r}=|s_r\rangle\langle s_r|\) and
   \(\Pi_{t0,r}=|t^0_r\rangle\langle t^0_r|\), where
   \(|s_r\rangle=(|\uparrow,\downarrow\rangle-|\downarrow,\uparrow\rangle)/\sqrt2\)
   and
   \(|t^0_r\rangle=(|\uparrow,\downarrow\rangle+|\downarrow,\uparrow\rangle)/\sqrt2\)
   on dimer \(D_r\).
-- Inter-dimer bond kinetic moments:
+- Bond kinetic moments on weak inter-dimer bonds:
   \(M_r=K_{2r,2r+1}\) on the weak bonds \(B_r\).
 
 **Verification results.**
@@ -113,12 +134,15 @@ The selected moment families tested were:
 1. **Reference exactness.** With MOSEK, the reference energy error was around
    \(10^{-9}\).
 
-2. **First-order response matching.** Dimer-local selected moments matched well
-   at \(H_0\). Inter-dimer bond moments gave a large response-matching error.
+2. **First-order response matching.** The selected moments supported on strong
+   dimers \(D_r\) matched well at \(H_0\). The bond kinetic moments
+   \(K_{2r,2r+1}\) on weak inter-dimer bonds gave a large response-matching
+   error.
 
-3. **Mismatch lower bound.** For all dimer-local observables tested, including
-   bond kinetic, double occupancy, spin correlations, pair hopping, and
-   singlet/triplet projectors, the mismatch scaled quadratically:
+3. **Mismatch lower bound.** For all observables supported on strong dimers
+   \(D_r\) that were tested, including bond kinetic, double occupancy, spin
+   correlations, pair hopping, and singlet/triplet projectors, the mismatch
+   scaled quadratically:
 
 \[
 \|\delta m_S(\theta)\| \sim C\theta^2,
@@ -172,9 +196,38 @@ The reported checks used \(U=4\), \(t_d=1\), and \(L=4,6\).
 ## Observed Status
 
 For the standard hopping perturbation, the reference exactness error was small,
-the dimer-local response check passed numerically, and the dimer-local mismatch
-was quadratic in \(\theta\) in the tested cases.
+the response check for moments supported on strong dimers passed numerically,
+and the corresponding mismatch was quadratic in \(\theta\) in the tested cases.
 
 For the density-density perturbation, the tested \(L=4\) and \(L=6\) cases both
 gave small reference errors, small response-matching errors, and a linear
 mismatch ratio bounded away from zero on the tested \(\theta\)-range.
+
+## References
+
+[1] J. Hubbard, "Electron correlations in narrow energy bands," Proceedings of
+the Royal Society A 276, 238-257 (1963).
+https://doi.org/10.1098/rspa.1963.0204
+
+[2] F. H. L. Essler, H. Frahm, F. Göhmann, A. Klümper, and V. E. Korepin,
+The One-Dimensional Hubbard Model, Cambridge University Press (2005).
+https://doi.org/10.1017/CBO9780511534843
+
+[3] K. Penc and F. Mila, "Charge gap in the one-dimensional dimerized Hubbard
+model at quarter-filling," Physical Review B 50, 11429 (1994).
+https://doi.org/10.1103/PhysRevB.50.11429
+
+[4] S. R. White, R. M. Noack, and D. J. Scalapino, "Density-matrix
+renormalization-group studies of the alternating Hubbard model," Physical
+Review B 51, 10287 (1995). https://doi.org/10.1103/PhysRevB.51.10287
+
+[5] E. Jeckelmann, "Ground-State Phase Diagram of a Half-Filled
+One-Dimensional Extended Hubbard Model," Physical Review Letters 89, 236401
+(2002). https://doi.org/10.1103/PhysRevLett.89.236401
+
+[6] R. Kubo, "Statistical-Mechanical Theory of Irreversible Processes. I,"
+Journal of the Physical Society of Japan 12, 570-586 (1957).
+https://doi.org/10.1143/JPSJ.12.570
+
+[7] L. Vandenberghe and S. Boyd, "Semidefinite Programming," SIAM Review 38,
+49-95 (1996). https://doi.org/10.1137/1038003
