@@ -70,10 +70,10 @@ Output files:
 - `results/standard_dimerized_hubbard_L4_U2_double_mosek_mismatch.csv`
 - `results/standard_dimerized_hubbard_L4_U2_double_mosek_theta_sweep_summary.txt`
 - `results/standard_dimerized_hubbard_L4_U2_double_mosek_theta_sweep.csv`
-- `results/standard_dimerized_hubbard_L6_U2_double_light_summary.txt`
-- `results/standard_dimerized_hubbard_L6_U2_double_light_mismatch.csv`
-- `results/standard_dimerized_hubbard_L6_U2_double_mosek_light_summary.txt`
-- `results/standard_dimerized_hubbard_L6_U2_double_mosek_light_mismatch.csv`
+- `results/standard_dimerized_hubbard_L6_U2_double_mismatch_summary.txt`
+- `results/standard_dimerized_hubbard_L6_U2_double_mismatch.csv`
+- `results/standard_dimerized_hubbard_L6_U2_double_mosek_mismatch_summary.txt`
+- `results/standard_dimerized_hubbard_L6_U2_double_mosek_mismatch.csv`
 - `results/standard_moments_mosek_scan.csv`
 - `results/standard_moments_mosek_scan_top.txt`
 - `results/standard_dimer_local_moments_mosek_scan.csv`
@@ -140,9 +140,9 @@ theta = -0.01            ||delta m||/|theta| about 3.57e-2
 theta =  0.01            ||delta m||/|theta| about 3.57e-2
 ```
 
-The `L = 6` lightweight follow-up returned `OPTIMAL` for both mismatch solves.
+The reduced `L = 6` follow-up returned `OPTIMAL` for both mismatch solves.
 
-The `L = 6` MOSEK lightweight check confirms the same scaling pattern:
+The reduced `L = 6` MOSEK check confirms the same scaling pattern:
 
 ```text
 reference energy error   about 7.57e-12

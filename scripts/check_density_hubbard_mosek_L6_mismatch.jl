@@ -4,8 +4,8 @@ using VerifySDP
 
 # Density-perturbed extended spinful Hubbard dimer chain, L=6.
 #
-# This lightweight script checks reference exactness and small-theta mismatch
-# ratios. The full L=6 response matrix is computed by
+# This script checks reference exactness and small-theta mismatch ratios.
+# The full L=6 response matrix is computed by
 # `check_density_hubbard_mosek_L6_response.jl`.
 
 project_dir = normpath(joinpath(@__DIR__, ".."))
@@ -20,8 +20,8 @@ model = spinful_hubbard_dimer_model(
 )
 
 theta_grid = [-1e-2, -5e-3, 5e-3, 1e-2]
-summary_file = joinpath(results_dir, "density_hubbard_L6_U4_bond_mosek_light_summary.txt")
-mismatch_file = joinpath(results_dir, "density_hubbard_L6_U4_bond_mosek_light_mismatch.csv")
+summary_file = joinpath(results_dir, "density_hubbard_L6_U4_bond_mosek_mismatch_summary.txt")
+mismatch_file = joinpath(results_dir, "density_hubbard_L6_U4_bond_mosek_mismatch.csv")
 
 phys0 = physical_observables(model)
 sdp0 = solve_sdp_observables(model; solver = :mosek, eps_abs = 1e-8, eps_rel = 1e-8, max_iters = 300)
@@ -64,7 +64,7 @@ open(mismatch_file, "w") do io
     end
 end
 
-println("== Density Hubbard L=6 MOSEK light check ==")
+println("== Density Hubbard L=6 MOSEK mismatch check ==")
 @printf("reference sdp - physical  %.12e\n", sdp0.energy - phys0.energy)
 @printf("moment error norm          %.12e\n", ref_moment_error)
 println("theta,delta_norm,ratio,quadratic_ratio,status")

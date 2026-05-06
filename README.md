@@ -5,7 +5,7 @@ reduced SDP relaxation for small fermionic lattice models.
 
 The experiments here compare exact diagonalization against a reduced
 two-site-marginal SDP. They were written to support the summary in
-[`reports/teacher_summary_density_vs_standard.md`](reports/teacher_summary_density_vs_standard.md).
+[`reports/model_verification_summary.md`](reports/model_verification_summary.md).
 
 ## What Is Checked
 
@@ -25,8 +25,8 @@ perturbation \(H(\theta)=H_0+\theta V\), the scripts check:
 
 ### Standard Dimerized Spinful Hubbard Chain
 
-The reference \(H_0\) is a product of isolated two-site spinful Hubbard dimers.
-The perturbation is weak inter-dimer hopping.
+The reference \(H_0\) is a product of isolated two-site spinful Hubbard units.
+The perturbation is inter-unit hopping.
 
 Main scripts:
 
@@ -37,12 +37,12 @@ Main scripts:
 
 The reference \(H_0\) is the same isolated-dimer Hamiltonian. The perturbation
 is an inter-dimer density-density coupling. The selected moments are the bond
-kinetic observables on each strong dimer.
+kinetic observables inside each reference two-site unit.
 
 Main scripts:
 
 - `scripts/check_density_hubbard_mosek_L4.jl`
-- `scripts/check_density_hubbard_mosek_L6_light.jl`
+- `scripts/check_density_hubbard_mosek_L6_mismatch.jl`
 - `scripts/check_density_hubbard_mosek_L6_response.jl`
 
 ## Repository Layout
@@ -52,8 +52,8 @@ Main scripts:
 - `scripts/`: reproducibility scripts for the two models discussed in the
   report.
 - `reports/`: summary and detailed notes.
-- `output/pdf/teacher_summary_density_vs_standard.pdf`: rendered PDF version
-  of the teacher-facing summary.
+- `output/pdf/model_verification_summary.pdf`: rendered PDF version of the
+  model verification summary.
 - `results/`: numerical outputs used by the reports.
 - `test/runtests.jl`: lightweight non-MOSEK smoke test.
 
@@ -83,7 +83,7 @@ From the repository root:
 julia --project=. scripts/scan_standard_moments_mosek.jl
 julia --project=. scripts/scan_standard_dimer_local_moments_mosek.jl
 julia --project=. scripts/check_density_hubbard_mosek_L4.jl
-julia --project=. scripts/check_density_hubbard_mosek_L6_light.jl
+julia --project=. scripts/check_density_hubbard_mosek_L6_mismatch.jl
 julia --project=. scripts/check_density_hubbard_mosek_L6_response.jl
 ```
 
