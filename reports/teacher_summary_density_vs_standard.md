@@ -23,10 +23,13 @@ Hubbard-dimer reference point.
 
 - Lattice: an open one-dimensional chain with \(L\) sites, \(L\) even.
 - Filling: half filling, \(N_e=L\) electrons.
-- In this report, \(D_r=(2r-1,2r)\), \(r=1,\dots,L/2\), denotes the
-  two-site unit that is coupled in the reference Hamiltonian \(H_0\).
-- In this report, \(B_r=(2r,2r+1)\), \(r=1,\dots,L/2-1\), denotes the
-  inter-dimer bond on which the perturbation is applied.
+- In this report, \(\mathcal D_r=(2r-1,2r)\),
+  \(r=1,\dots,L/2\), denotes the two-site unit that is coupled in the
+  reference Hamiltonian \(H_0\). The calligraphic symbol is used to avoid
+  confusion with the onsite double occupancy \(D_i\) below.
+- In this report, \(\mathcal B_r=(2r,2r+1)\),
+  \(r=1,\dots,L/2-1\), denotes the inter-unit bond on which the perturbation
+  is applied.
 - Operators:
   - \(c_{i,\sigma},c^\dagger_{i,\sigma}\): fermion annihilation/creation
     operators at site \(i\) with spin \(\sigma\in\{\uparrow,\downarrow\}\).
@@ -40,6 +43,20 @@ Hubbard-dimer reference point.
     \(S_i^-=c^\dagger_{i,\downarrow}c_{i,\uparrow}\).
   - \(h.c.\) denotes the Hermitian conjugate.
 
+As an indexing example, when \(L=6\),
+\[
+\mathcal D_1=(1,2),\qquad
+\mathcal D_2=(3,4),\qquad
+\mathcal D_3=(5,6),
+\]
+whereas
+\[
+\mathcal B_1=(2,3),\qquad
+\mathcal B_2=(4,5).
+\]
+Thus \(\mathcal D_r\) labels the pairs already present in \(H_0\), while
+\(\mathcal B_r\) labels the bonds connecting neighboring pairs.
+
 The common reference Hamiltonian is the isolated-dimer spinful Hubbard model
 with \(t_d=1\):
 
@@ -47,6 +64,16 @@ with \(t_d=1\):
 H_0=\sum_{r=1}^{L/2}
 \left[-K_{2r-1,2r}
 +U(D_{2r-1}+D_{2r})\right].
+\]
+
+With the same \(L=6\) indexing example, this is
+\[
+\begin{aligned}
+H_0
+=&[-K_{1,2}+U(D_1+D_2)]
+ +[-K_{3,4}+U(D_3+D_4)]\\
+&+[-K_{5,6}+U(D_5+D_6)] .
+\end{aligned}
 \]
 
 For response matching, fields are coupled to the selected moments
@@ -73,6 +100,17 @@ report, not standard names from the Hubbard-model literature.
   This ratio is used to estimate \(c_{\mathrm{mis}}\).
 - Solver:
   all reported SDP values below were computed with MOSEK.
+
+As a concrete example, if the selected moments are
+\(M_r=K_{2r-1,2r}\) and \(L=6\), then
+\[
+m_S=(\langle K_{1,2}\rangle,\langle K_{3,4}\rangle,
+\langle K_{5,6}\rangle).
+\]
+A response-matching error measures how close the SDP and exact physical
+first-order changes of this vector are when small fields \(h_a\) are applied.
+A mismatch ratio near \(0.21\) means that the SDP and physical selected-moment
+vectors differ by about \(0.21|\theta|\) in norm over the tested range.
 
 ## Terminology And References
 
@@ -108,28 +146,42 @@ The reported scan used \(L=4\), \(U=2\), \(t_d=1\), and
 
 The selected moment families tested were:
 
-- Bond kinetic moments within \(D_r\):
+- Bond kinetic moments within \(\mathcal D_r\):
   \(M_r=K_{2r-1,2r}\).
-- Double occupancy moments within \(D_r\):
+- Double occupancy moments within \(\mathcal D_r\):
   \(M_r=D_{2r-1}+D_{2r}\), and also the site-resolved versions
   \(D_{2r-1}\), \(D_{2r}\).
-- Spin correlation moments within \(D_r\):
+- Spin correlation moments within \(\mathcal D_r\):
   \(S^z_{2r-1}S^z_{2r}\), and
   \(\mathbf S_{2r-1}\cdot\mathbf S_{2r}
   =S^z_{2r-1}S^z_{2r}
   +\frac12(S^+_{2r-1}S^-_{2r}+S^-_{2r-1}S^+_{2r})\).
-- Onsite-pair hopping moments between the two sites of \(D_r\):
+- Onsite-pair hopping moments between the two sites of \(\mathcal D_r\):
   \(P_r=c^\dagger_{2r-1,\uparrow}c^\dagger_{2r-1,\downarrow}
   c_{2r,\downarrow}c_{2r,\uparrow}+h.c.\).
-- Singlet/triplet projectors on \(D_r\):
+- Singlet/triplet projectors on \(\mathcal D_r\):
   \(\Pi_{s,r}=|s_r\rangle\langle s_r|\) and
   \(\Pi_{t0,r}=|t^0_r\rangle\langle t^0_r|\), where
   \(|s_r\rangle=(|\uparrow,\downarrow\rangle-|\downarrow,\uparrow\rangle)/\sqrt2\)
   and
   \(|t^0_r\rangle=(|\uparrow,\downarrow\rangle+|\downarrow,\uparrow\rangle)/\sqrt2\)
-  on dimer \(D_r\).
-- Bond kinetic moments on \(B_r\):
+  on \(\mathcal D_r\).
+- Bond kinetic moments on \(\mathcal B_r\):
   \(M_r=K_{2r,2r+1}\).
+
+As an indexing example, when \(L=6\), the hopping perturbation is
+\[
+V_{\mathrm{hop}}=-(K_{2,3}+K_{4,5}),
+\]
+which acts on \(\mathcal B_1\) and \(\mathcal B_2\). In the same \(L=6\)
+system, the bond kinetic moments within the reference units are
+\[
+K_{1,2},\qquad K_{3,4},\qquad K_{5,6},
+\]
+whereas the bond kinetic moments on the perturbation bonds are
+\[
+K_{2,3},\qquad K_{4,5}.
+\]
 
 **Verification results.**
 
@@ -142,31 +194,36 @@ The selected moment families tested were:
    | \(D_{2r-1}+D_{2r}\) | \(1.47\times10^{-9}\) | \(4.74\times10^{-8}\) | OPTIMAL |
    | \(K_{2r,2r+1}\) | \(1.47\times10^{-9}\) | \(4.65\times10^{-16}\) | OPTIMAL |
 
-2. **First-order response matching.** Moments supported within \(D_r\) had
-   small response-matching errors. The bond kinetic moment on \(B_r\) had a
-   large response-matching error.
+2. **First-order response matching.** Moments supported within
+   \(\mathcal D_r\) had small response-matching errors. The bond kinetic
+   moment on \(\mathcal B_r\) had a large response-matching error.
 
    | Selected moments | Support | Response error |
    | --- | --- | ---: |
-   | \(K_{2r-1,2r}\) | within \(D_r\) | \(4.86\times10^{-7}\) |
-   | \(D_{2r-1}+D_{2r}\) | within \(D_r\) | \(1.56\times10^{-7}\) |
-   | \(\mathbf S_{2r-1}\cdot\mathbf S_{2r}\) | within \(D_r\) | \(1.44\times10^{-7}\) |
-   | \(\Pi_{s,r}\) | within \(D_r\) | \(1.10\times10^{-7}\) |
-   | \(K_{2r,2r+1}\) | on \(B_r\) | \(7.05\) |
+   | \(K_{2r-1,2r}\) | within \(\mathcal D_r\) | \(4.86\times10^{-7}\) |
+   | \(D_{2r-1}+D_{2r}\) | within \(\mathcal D_r\) | \(1.56\times10^{-7}\) |
+   | \(\mathbf S_{2r-1}\cdot\mathbf S_{2r}\) | within \(\mathcal D_r\) | \(1.44\times10^{-7}\) |
+   | \(\Pi_{s,r}\) | within \(\mathcal D_r\) | \(1.10\times10^{-7}\) |
+   | \(K_{2r,2r+1}\) | on \(\mathcal B_r\) | \(7.05\) |
 
-3. **Mismatch lower bound.** For moments supported within \(D_r\), the ratio
-   \(\|\delta m_S(\theta)\|/|\theta|\) approximately doubled when
+3. **Mismatch lower bound.** For moments supported within \(\mathcal D_r\),
+   the ratio \(\|\delta m_S(\theta)\|/|\theta|\) approximately doubled when
    \(|\theta|\) doubled from \(0.005\) to \(0.01\). This indicates quadratic,
-   not linear, scaling in the tested range. The bond kinetic moment on \(B_r\)
-   had a stable linear ratio, but it failed the response-matching check above.
+   not linear, scaling in the tested range. The bond kinetic moment on
+   \(\mathcal B_r\) had a stable linear ratio, but it failed the
+   response-matching check above.
 
    | Selected moments | Support | Ratio at 0.005 | Ratio at 0.01 | Observation |
    | --- | --- | ---: | ---: | --- |
-   | \(K_{2r-1,2r}\) | within \(D_r\) | \(5.96\times10^{-3}\) | \(1.17\times10^{-2}\) | quadratic |
-   | \(D_{2r-1}+D_{2r}\) | within \(D_r\) | \(7.04\times10^{-3}\) | \(1.40\times10^{-2}\) | quadratic |
-   | \(\mathbf S_{2r-1}\cdot\mathbf S_{2r}\) | within \(D_r\) | \(6.36\times10^{-3}\) | \(1.26\times10^{-2}\) | quadratic |
-   | \(P_r\) | within \(D_r\) | \(5.42\times10^{-3}\) | \(1.09\times10^{-2}\) | quadratic |
-   | \(K_{2r,2r+1}\) | on \(B_r\) | \(4.59\) | \(4.59\) | linear ratio, response failed |
+   | \(K_{2r-1,2r}\) | within \(\mathcal D_r\) | \(5.96\times10^{-3}\) | \(1.17\times10^{-2}\) | quadratic |
+   | \(D_{2r-1}+D_{2r}\) | within \(\mathcal D_r\) | \(7.04\times10^{-3}\) | \(1.40\times10^{-2}\) | quadratic |
+   | \(\mathbf S_{2r-1}\cdot\mathbf S_{2r}\) | within \(\mathcal D_r\) | \(6.36\times10^{-3}\) | \(1.26\times10^{-2}\) | quadratic |
+   | \(P_r\) | within \(\mathcal D_r\) | \(5.42\times10^{-3}\) | \(1.09\times10^{-2}\) | quadratic |
+   | \(K_{2r,2r+1}\) | on \(\mathcal B_r\) | \(4.59\) | \(4.59\) | linear ratio, response failed |
+
+   For example, the first row says that for the selected vector built from
+   \(K_{2r-1,2r}\), the mismatch ratio increased from
+   \(5.96\times10^{-3}\) to \(1.17\times10^{-2}\) when \(|\theta|\) doubled.
 
 ## Model 2: Density-Perturbed Extended Spinful Hubbard Dimer Chain
 
@@ -179,11 +236,22 @@ V_{\mathrm{dens}}
 =\sum_{r=1}^{L/2-1} n_{2r}n_{2r+1}.
 \]
 
-The selected moments are the bond kinetic observables within \(D_r\):
+The selected moments are the bond kinetic observables within \(\mathcal D_r\):
 
 \[
 M_r=K_{2r-1,2r},\qquad r=1,\dots,L/2.
 \]
+
+As an indexing example, when \(L=6\),
+\[
+V_{\mathrm{dens}}=n_2n_3+n_4n_5,
+\]
+while the selected moments are
+\[
+K_{1,2},\qquad K_{3,4},\qquad K_{5,6}.
+\]
+Thus this model perturbs the links \(\mathcal B_1,\mathcal B_2\) but measures
+bond kinetic observables inside \(\mathcal D_1,\mathcal D_2,\mathcal D_3\).
 
 The reported checks used \(U=4\), \(t_d=1\), and \(L=4,6\).
 
@@ -215,10 +283,14 @@ The reported checks used \(U=4\), \(t_d=1\), and \(L=4,6\).
    | \(L=4,U=4\) | \(0.002,0.005,0.01,0.02\) | \(0.124\)--\(0.125\) | \(0.12\) |
    | \(L=6,U=4\) | \(0.005,0.01\) | \(0.215\)--\(0.216\) | \(0.21\) |
 
+   For example, the \(L=6,U=4\) row says that the observed mismatch ratio was
+   about \(0.215\) at both tested values of \(|\theta|\), so \(0.21\) was used
+   as a conservative numerical lower-bound constant on this tested range.
+
 ## Observed Status
 
 For the standard hopping perturbation, the reference exactness error was small,
-the response check for moments supported within \(D_r\) passed numerically,
+the response check for moments supported within \(\mathcal D_r\) passed numerically,
 and the corresponding mismatch was quadratic in \(\theta\) in the tested cases.
 
 For the density-density perturbation, the tested \(L=4\) and \(L=6\) cases both
