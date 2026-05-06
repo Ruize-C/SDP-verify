@@ -17,9 +17,41 @@ wanted to verify three points:
    \(H(\theta)=H_0+\theta V\).
 
 We tested two spinful Hubbard-type candidates, both based on an isolated
-Hubbard-dimer reference point, i.e. a decoupled product of two-site spinful
-Hubbard dimers. Here \(L\) denotes the number of lattice sites and \(U\) is the
-onsite Hubbard interaction.
+Hubbard-dimer reference point.
+
+## Common Setup And Notation
+
+- Lattice: an open one-dimensional chain with \(L\) sites, \(L\) even.
+- Filling: half filling, \(N_e=L\) electrons.
+- Strong dimers: \(D_r=(2r-1,2r)\), \(r=1,\dots,L/2\).
+- Weak inter-dimer bonds: \(B_r=(2r,2r+1)\), \(r=1,\dots,L/2-1\).
+- Operators:
+  - \(c_{i,\sigma},c^\dagger_{i,\sigma}\): fermion annihilation/creation
+    operators at site \(i\) with spin \(\sigma\in\{\uparrow,\downarrow\}\).
+  - \(n_{i,\sigma}=c^\dagger_{i,\sigma}c_{i,\sigma}\), and
+    \(n_i=n_{i,\uparrow}+n_{i,\downarrow}\).
+  - \(D_i=n_{i,\uparrow}n_{i,\downarrow}\), the onsite double occupancy.
+  - \(K_{ij}=\sum_\sigma(c^\dagger_{i,\sigma}c_{j,\sigma}
+    +c^\dagger_{j,\sigma}c_{i,\sigma})\), the bond kinetic observable.
+  - \(S_i^z=(n_{i,\uparrow}-n_{i,\downarrow})/2\),
+    \(S_i^+=c^\dagger_{i,\uparrow}c_{i,\downarrow}\), and
+    \(S_i^-=c^\dagger_{i,\downarrow}c_{i,\uparrow}\).
+  - \(h.c.\) denotes the Hermitian conjugate.
+
+The common reference Hamiltonian is the isolated-dimer spinful Hubbard model
+with \(t_d=1\):
+
+\[
+H_0=\sum_{r=1}^{L/2}
+\left[-K_{2r-1,2r}
++U(D_{2r-1}+D_{2r})\right].
+\]
+
+For response matching, fields are coupled to the selected moments
+\(M_1,\dots,M_s\) by
+\[
+H(\theta,h)=H_0+\theta V-\sum_{a=1}^s h_aM_a.
+\]
 
 ## Reported Quantities
 
@@ -40,20 +72,41 @@ onsite Hubbard interaction.
 ## Model 1: Standard Dimerized Spinful Hubbard Chain
 
 **Model.** The first model is the standard alternating-hopping spinful Hubbard
-chain. The reference Hamiltonian \(H_0\) is a product of isolated Hubbard
-dimers, and the weak perturbation is inter-dimer hopping:
+chain. It uses the common reference Hamiltonian \(H_0\) above and the weak
+inter-dimer hopping perturbation
 
 \[
 V_{\mathrm{hop}}
-=-\sum_{k,\sigma}
-(c^\dagger_{2k,\sigma}c_{2k+1,\sigma}+h.c.).
+=-\sum_{r=1}^{L/2-1}K_{2r,2r+1}.
 \]
 
-Here "dimer-local moments" refers to observables supported inside each strong
-dimer, i.e. inside each isolated two-site unit of \(H_0\), such as bond kinetic
-energy, double occupancy, and spin correlations.
-"Inter-dimer bond moments" refers to hopping-type observables on the weak
-bonds connecting neighboring dimers.
+The reported scan used \(L=4\), \(U=2\), \(t_d=1\), and
+\(\theta=\pm0.005,\pm0.01\).
+
+The selected moment families tested were:
+
+- Dimer-local bond kinetic moments:
+  \(M_r=K_{2r-1,2r}\).
+- Dimer-local double occupancy moments:
+  \(M_r=D_{2r-1}+D_{2r}\), and also the site-resolved versions
+  \(D_{2r-1}\), \(D_{2r}\).
+- Dimer-local spin moments:
+  \(S^z_{2r-1}S^z_{2r}\), and
+  \(\mathbf S_{2r-1}\cdot\mathbf S_{2r}
+  =S^z_{2r-1}S^z_{2r}
+  +\frac12(S^+_{2r-1}S^-_{2r}+S^-_{2r-1}S^+_{2r})\).
+- Dimer-local pair-hopping moments:
+  \(P_r=c^\dagger_{2r-1,\uparrow}c^\dagger_{2r-1,\downarrow}
+  c_{2r,\downarrow}c_{2r,\uparrow}+h.c.\).
+- Dimer-local singlet/triplet projectors:
+  \(\Pi_{s,r}=|s_r\rangle\langle s_r|\) and
+  \(\Pi_{t0,r}=|t^0_r\rangle\langle t^0_r|\), where
+  \(|s_r\rangle=(|\uparrow,\downarrow\rangle-|\downarrow,\uparrow\rangle)/\sqrt2\)
+  and
+  \(|t^0_r\rangle=(|\uparrow,\downarrow\rangle+|\downarrow,\uparrow\rangle)/\sqrt2\)
+  on dimer \(D_r\).
+- Inter-dimer bond kinetic moments:
+  \(M_r=K_{2r,2r+1}\) on the weak bonds \(B_r\).
 
 **Verification results.**
 
@@ -82,18 +135,16 @@ perturbation:
 
 \[
 V_{\mathrm{dens}}
-=\sum_k n_{2k}n_{2k+1}.
+=\sum_{r=1}^{L/2-1} n_{2r}n_{2r+1}.
 \]
 
-Here \(n_i=n_{i,\uparrow}+n_{i,\downarrow}\) is the total occupation at site
-\(i\).
-
-The selected moments are the bond kinetic observables on each strong dimer:
+The selected moments are the strong-dimer bond kinetic observables:
 
 \[
-M_k=\sum_\sigma
-(c^\dagger_{2k-1,\sigma}c_{2k,\sigma}+h.c.).
+M_r=K_{2r-1,2r},\qquad r=1,\dots,L/2.
 \]
+
+The reported checks used \(U=4\), \(t_d=1\), and \(L=4,6\).
 
 **Verification results.**
 
