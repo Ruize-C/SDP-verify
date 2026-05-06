@@ -52,6 +52,8 @@ Main scripts:
 - `scripts/`: reproducibility scripts for the two models discussed in the
   report.
 - `reports/`: summary and detailed notes.
+- `output/pdf/teacher_summary_density_vs_standard.pdf`: rendered PDF version
+  of the teacher-facing summary.
 - `results/`: numerical outputs used by the reports.
 - `test/runtests.jl`: lightweight non-MOSEK smoke test.
 
