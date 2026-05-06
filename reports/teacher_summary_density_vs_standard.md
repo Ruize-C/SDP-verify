@@ -131,25 +131,40 @@ The selected moment families tested were:
 
 **Verification results.**
 
-1. **Reference exactness.** With MOSEK, the reference energy error was around
-   \(10^{-9}\).
+1. **Reference exactness.** The reference SDP was solved at \(H_0\). The
+   following rows give representative moment choices from the scan.
 
-2. **First-order response matching.** The selected moments supported on strong
-   dimers \(D_r\) matched well at \(H_0\). The bond kinetic moments
-   \(K_{2r,2r+1}\) on weak inter-dimer bonds gave a large response-matching
-   error.
+   | Selected moments | Energy error | Moment error | Status |
+   | --- | ---: | ---: | --- |
+   | \(K_{2r-1,2r}\) | \(1.47\times10^{-9}\) | \(9.37\times10^{-8}\) | OPTIMAL |
+   | \(D_{2r-1}+D_{2r}\) | \(1.47\times10^{-9}\) | \(4.74\times10^{-8}\) | OPTIMAL |
+   | \(K_{2r,2r+1}\) | \(1.47\times10^{-9}\) | \(4.65\times10^{-16}\) | OPTIMAL |
 
-3. **Mismatch lower bound.** For all observables supported on strong dimers
-   \(D_r\) that were tested, including bond kinetic, double occupancy, spin
-   correlations, pair hopping, and singlet/triplet projectors, the mismatch
-   scaled quadratically:
+2. **First-order response matching.** Strong-dimer moments had small
+   response-matching errors. The weak-bond kinetic moment had a large
+   response-matching error.
 
-\[
-\|\delta m_S(\theta)\| \sim C\theta^2,
-\]
+   | Selected moments | Support | Response error |
+   | --- | --- | ---: |
+   | \(K_{2r-1,2r}\) | strong dimers \(D_r\) | \(4.86\times10^{-7}\) |
+   | \(D_{2r-1}+D_{2r}\) | strong dimers \(D_r\) | \(1.56\times10^{-7}\) |
+   | \(\mathbf S_{2r-1}\cdot\mathbf S_{2r}\) | strong dimers \(D_r\) | \(1.44\times10^{-7}\) |
+   | \(\Pi_{s,r}\) | strong dimers \(D_r\) | \(1.10\times10^{-7}\) |
+   | \(K_{2r,2r+1}\) | weak bonds \(B_r\) | \(7.05\) |
 
-   rather than linearly in \(|\theta|\). Inter-dimer bond moments did show a
-   strong linear mismatch, while response matching failed for those moments.
+3. **Mismatch lower bound.** For strong-dimer moments, the ratio
+   \(\|\delta m_S(\theta)\|/|\theta|\) approximately doubled when
+   \(|\theta|\) doubled from \(0.005\) to \(0.01\). This indicates quadratic,
+   not linear, scaling in the tested range. The weak-bond kinetic moment had a
+   stable linear ratio, but it failed the response-matching check above.
+
+   | Selected moments | Support | Ratio at 0.005 | Ratio at 0.01 | Observation |
+   | --- | --- | ---: | ---: | --- |
+   | \(K_{2r-1,2r}\) | strong dimers | \(5.96\times10^{-3}\) | \(1.17\times10^{-2}\) | quadratic |
+   | \(D_{2r-1}+D_{2r}\) | strong dimers | \(7.04\times10^{-3}\) | \(1.40\times10^{-2}\) | quadratic |
+   | \(\mathbf S_{2r-1}\cdot\mathbf S_{2r}\) | strong dimers | \(6.36\times10^{-3}\) | \(1.26\times10^{-2}\) | quadratic |
+   | \(P_r\) | strong dimers | \(5.42\times10^{-3}\) | \(1.09\times10^{-2}\) | quadratic |
+   | \(K_{2r,2r+1}\) | weak bonds | \(4.59\) | \(4.59\) | linear ratio, response failed |
 
 ## Model 2: Density-Perturbed Extended Spinful Hubbard Dimer Chain
 
@@ -172,26 +187,31 @@ The reported checks used \(U=4\), \(t_d=1\), and \(L=4,6\).
 
 **Verification results.**
 
-1. **Reference exactness.** With MOSEK, the reference point was exact to high
+1. **Reference exactness.** At \(H_0\), both the SDP energy and selected
+   bond-kinetic moments matched the exact ground-state values to high
    precision.
-   - \(L=4, U=4\): reference energy error about \(5.7\times10^{-12}\);
-     selected-moment error about \(1.0\times10^{-7}\).
-   - \(L=6, U=4\): reference energy error about \(8.2\times10^{-13}\);
-     selected-moment error about \(1.0\times10^{-9}\).
+
+   | System | Energy error | Moment error | Status |
+   | --- | ---: | ---: | --- |
+   | \(L=4,U=4\) | \(5.74\times10^{-12}\) | \(1.01\times10^{-7}\) | OPTIMAL |
+   | \(L=6,U=4\) | \(8.18\times10^{-13}\) | \(1.03\times10^{-9}\) | OPTIMAL |
 
 2. **First-order response matching.** The SDP and physical response matrices
-   had small response-matching errors.
-   - \(L=4, U=4\): response-matching error about \(3.0\times10^{-5}\).
-   - \(L=6, U=4\): response-matching error about \(3.5\times10^{-6}\).
+   were compared by finite differences with field step \(h=0.005\).
 
-3. **Mismatch lower bound.** The selected bond-kinetic moments showed a stable
-   linear mismatch after the density perturbation.
-   - \(L=4, U=4\): \(\|\delta m_S(\theta)\|/|\theta|\approx 0.125\) for
-     \(|\theta|\le 0.02\), corresponding to
-     \(c_{\mathrm{mis}}\approx 0.12\) on the tested range.
-   - \(L=6, U=4\): \(\|\delta m_S(\theta)\|/|\theta|\approx
-     0.215\text{--}0.216\) for \(|\theta|=0.005,0.01\), corresponding to
-     \(c_{\mathrm{mis}}\approx 0.21\) on the tested range.
+   | System | Selected moments | Response error |
+   | --- | --- | ---: |
+   | \(L=4,U=4\) | \(K_{2r-1,2r}\) | \(3.04\times10^{-5}\) |
+   | \(L=6,U=4\) | \(K_{2r-1,2r}\) | \(3.46\times10^{-6}\) |
+
+3. **Mismatch lower bound.** The ratio
+   \(\|\delta m_S(\theta)\|/|\theta|\) stayed nearly constant over the tested
+   \(\theta\)-range, giving a numerical lower-bound constant.
+
+   | System | Tested \(|\theta|\) | Ratio range | Conservative \(c_{\mathrm{mis}}\) |
+   | --- | --- | ---: | ---: |
+   | \(L=4,U=4\) | \(0.002,0.005,0.01,0.02\) | \(0.124\)--\(0.125\) | \(0.12\) |
+   | \(L=6,U=4\) | \(0.005,0.01\) | \(0.215\)--\(0.216\) | \(0.21\) |
 
 ## Observed Status
 
