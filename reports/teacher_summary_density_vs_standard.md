@@ -13,7 +13,7 @@ wanted to verify three points:
    \[
    \|\delta m_S(\theta)\| \ge c_{\mathrm{mis}} |\theta|
    \]
-   for selected moments after a weak perturbation
+   for selected moments under the perturbative Hamiltonian
    \(H(\theta)=H_0+\theta V\).
 
 We tested two spinful Hubbard-type candidates, both based on an isolated
@@ -23,8 +23,10 @@ Hubbard-dimer reference point.
 
 - Lattice: an open one-dimensional chain with \(L\) sites, \(L\) even.
 - Filling: half filling, \(N_e=L\) electrons.
-- Strong dimers: \(D_r=(2r-1,2r)\), \(r=1,\dots,L/2\).
-- Weak inter-dimer bonds: \(B_r=(2r,2r+1)\), \(r=1,\dots,L/2-1\).
+- In this report, \(D_r=(2r-1,2r)\), \(r=1,\dots,L/2\), denotes the
+  two-site unit that is coupled in the reference Hamiltonian \(H_0\).
+- In this report, \(B_r=(2r,2r+1)\), \(r=1,\dots,L/2-1\), denotes the
+  inter-dimer bond on which the perturbation is applied.
 - Operators:
   - \(c_{i,\sigma},c^\dagger_{i,\sigma}\): fermion annihilation/creation
     operators at site \(i\) with spin \(\sigma\in\{\uparrow,\downarrow\}\).
@@ -80,8 +82,8 @@ report, not standard names from the Hubbard-model literature.
   treatments of the one-dimensional Hubbard model [[1](#references),
   [2](#references)].
 - The words "dimerized" and "alternating" refer to chains with alternating
-  strong and weak bonds; this terminology is standard in the dimerized or
-  alternating Hubbard-chain literature [[3](#references), [4](#references)].
+  bond strengths; this terminology is standard in the dimerized or alternating
+  Hubbard-chain literature [[3](#references), [4](#references)].
 - The term "extended Hubbard model" refers here to adding an intersite
   density-density interaction to the onsite Hubbard interaction; this is the
   standard usage in the extended-Hubbard literature [[5](#references)].
@@ -93,7 +95,7 @@ report, not standard names from the Hubbard-model literature.
 ## Model 1: Standard Dimerized Spinful Hubbard Chain
 
 **Model.** The first model is the standard alternating-hopping spinful Hubbard
-chain. It uses the common reference Hamiltonian \(H_0\) above and the weak
+chain. It uses the common reference Hamiltonian \(H_0\) above and the
 inter-dimer hopping perturbation
 
 \[
@@ -106,28 +108,28 @@ The reported scan used \(L=4\), \(U=2\), \(t_d=1\), and
 
 The selected moment families tested were:
 
-- Bond kinetic moments on strong dimers:
+- Bond kinetic moments within \(D_r\):
   \(M_r=K_{2r-1,2r}\).
-- Double occupancy moments on strong dimers:
+- Double occupancy moments within \(D_r\):
   \(M_r=D_{2r-1}+D_{2r}\), and also the site-resolved versions
   \(D_{2r-1}\), \(D_{2r}\).
-- Spin correlation moments on strong dimers:
+- Spin correlation moments within \(D_r\):
   \(S^z_{2r-1}S^z_{2r}\), and
   \(\mathbf S_{2r-1}\cdot\mathbf S_{2r}
   =S^z_{2r-1}S^z_{2r}
   +\frac12(S^+_{2r-1}S^-_{2r}+S^-_{2r-1}S^+_{2r})\).
-- Onsite-pair hopping moments between the two sites of a strong dimer:
+- Onsite-pair hopping moments between the two sites of \(D_r\):
   \(P_r=c^\dagger_{2r-1,\uparrow}c^\dagger_{2r-1,\downarrow}
   c_{2r,\downarrow}c_{2r,\uparrow}+h.c.\).
-- Singlet/triplet projectors on a strong dimer:
+- Singlet/triplet projectors on \(D_r\):
   \(\Pi_{s,r}=|s_r\rangle\langle s_r|\) and
   \(\Pi_{t0,r}=|t^0_r\rangle\langle t^0_r|\), where
   \(|s_r\rangle=(|\uparrow,\downarrow\rangle-|\downarrow,\uparrow\rangle)/\sqrt2\)
   and
   \(|t^0_r\rangle=(|\uparrow,\downarrow\rangle+|\downarrow,\uparrow\rangle)/\sqrt2\)
   on dimer \(D_r\).
-- Bond kinetic moments on weak inter-dimer bonds:
-  \(M_r=K_{2r,2r+1}\) on the weak bonds \(B_r\).
+- Bond kinetic moments on \(B_r\):
+  \(M_r=K_{2r,2r+1}\).
 
 **Verification results.**
 
@@ -140,36 +142,36 @@ The selected moment families tested were:
    | \(D_{2r-1}+D_{2r}\) | \(1.47\times10^{-9}\) | \(4.74\times10^{-8}\) | OPTIMAL |
    | \(K_{2r,2r+1}\) | \(1.47\times10^{-9}\) | \(4.65\times10^{-16}\) | OPTIMAL |
 
-2. **First-order response matching.** Strong-dimer moments had small
-   response-matching errors. The weak-bond kinetic moment had a large
-   response-matching error.
+2. **First-order response matching.** Moments supported within \(D_r\) had
+   small response-matching errors. The bond kinetic moment on \(B_r\) had a
+   large response-matching error.
 
    | Selected moments | Support | Response error |
    | --- | --- | ---: |
-   | \(K_{2r-1,2r}\) | strong dimers \(D_r\) | \(4.86\times10^{-7}\) |
-   | \(D_{2r-1}+D_{2r}\) | strong dimers \(D_r\) | \(1.56\times10^{-7}\) |
-   | \(\mathbf S_{2r-1}\cdot\mathbf S_{2r}\) | strong dimers \(D_r\) | \(1.44\times10^{-7}\) |
-   | \(\Pi_{s,r}\) | strong dimers \(D_r\) | \(1.10\times10^{-7}\) |
-   | \(K_{2r,2r+1}\) | weak bonds \(B_r\) | \(7.05\) |
+   | \(K_{2r-1,2r}\) | within \(D_r\) | \(4.86\times10^{-7}\) |
+   | \(D_{2r-1}+D_{2r}\) | within \(D_r\) | \(1.56\times10^{-7}\) |
+   | \(\mathbf S_{2r-1}\cdot\mathbf S_{2r}\) | within \(D_r\) | \(1.44\times10^{-7}\) |
+   | \(\Pi_{s,r}\) | within \(D_r\) | \(1.10\times10^{-7}\) |
+   | \(K_{2r,2r+1}\) | on \(B_r\) | \(7.05\) |
 
-3. **Mismatch lower bound.** For strong-dimer moments, the ratio
+3. **Mismatch lower bound.** For moments supported within \(D_r\), the ratio
    \(\|\delta m_S(\theta)\|/|\theta|\) approximately doubled when
    \(|\theta|\) doubled from \(0.005\) to \(0.01\). This indicates quadratic,
-   not linear, scaling in the tested range. The weak-bond kinetic moment had a
-   stable linear ratio, but it failed the response-matching check above.
+   not linear, scaling in the tested range. The bond kinetic moment on \(B_r\)
+   had a stable linear ratio, but it failed the response-matching check above.
 
    | Selected moments | Support | Ratio at 0.005 | Ratio at 0.01 | Observation |
    | --- | --- | ---: | ---: | --- |
-   | \(K_{2r-1,2r}\) | strong dimers | \(5.96\times10^{-3}\) | \(1.17\times10^{-2}\) | quadratic |
-   | \(D_{2r-1}+D_{2r}\) | strong dimers | \(7.04\times10^{-3}\) | \(1.40\times10^{-2}\) | quadratic |
-   | \(\mathbf S_{2r-1}\cdot\mathbf S_{2r}\) | strong dimers | \(6.36\times10^{-3}\) | \(1.26\times10^{-2}\) | quadratic |
-   | \(P_r\) | strong dimers | \(5.42\times10^{-3}\) | \(1.09\times10^{-2}\) | quadratic |
-   | \(K_{2r,2r+1}\) | weak bonds | \(4.59\) | \(4.59\) | linear ratio, response failed |
+   | \(K_{2r-1,2r}\) | within \(D_r\) | \(5.96\times10^{-3}\) | \(1.17\times10^{-2}\) | quadratic |
+   | \(D_{2r-1}+D_{2r}\) | within \(D_r\) | \(7.04\times10^{-3}\) | \(1.40\times10^{-2}\) | quadratic |
+   | \(\mathbf S_{2r-1}\cdot\mathbf S_{2r}\) | within \(D_r\) | \(6.36\times10^{-3}\) | \(1.26\times10^{-2}\) | quadratic |
+   | \(P_r\) | within \(D_r\) | \(5.42\times10^{-3}\) | \(1.09\times10^{-2}\) | quadratic |
+   | \(K_{2r,2r+1}\) | on \(B_r\) | \(4.59\) | \(4.59\) | linear ratio, response failed |
 
 ## Model 2: Density-Perturbed Extended Spinful Hubbard Dimer Chain
 
 **Model.** The second model uses the same isolated Hubbard-dimer reference
-\(H_0\), but replaces weak hopping by an inter-dimer density-density
+\(H_0\), but replaces the hopping perturbation by an inter-dimer density-density
 perturbation:
 
 \[
@@ -177,7 +179,7 @@ V_{\mathrm{dens}}
 =\sum_{r=1}^{L/2-1} n_{2r}n_{2r+1}.
 \]
 
-The selected moments are the strong-dimer bond kinetic observables:
+The selected moments are the bond kinetic observables within \(D_r\):
 
 \[
 M_r=K_{2r-1,2r},\qquad r=1,\dots,L/2.
@@ -216,7 +218,7 @@ The reported checks used \(U=4\), \(t_d=1\), and \(L=4,6\).
 ## Observed Status
 
 For the standard hopping perturbation, the reference exactness error was small,
-the response check for moments supported on strong dimers passed numerically,
+the response check for moments supported within \(D_r\) passed numerically,
 and the corresponding mismatch was quadratic in \(\theta\) in the tested cases.
 
 For the density-density perturbation, the tested \(L=4\) and \(L=6\) cases both
