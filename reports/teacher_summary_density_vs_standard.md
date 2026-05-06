@@ -3,8 +3,9 @@
 ## Goal
 
 The goal of this round was to find a concrete fermionic model that can support
-the perturbative SDP improvement framework in the draft. In particular, we
-wanted to verify three points:
+the perturbative SDP improvement framework in the draft, where SDP follows the
+standard semidefinite-programming terminology [[7](#references)]. In
+particular, we wanted to verify three points:
 
 1. exactness of the reduced SDP at a reference Hamiltonian \(H_0\);
 2. first-order response matching between the reduced SDP and the physical
@@ -17,7 +18,7 @@ wanted to verify three points:
    \(H(\theta)=H_0+\theta V\).
 
 We tested two spinful Hubbard-type candidates, both based on an isolated
-Hubbard-dimer reference point.
+Hubbard-dimer reference point [[1](#references), [2](#references)].
 
 ## Common Setup And Notation
 
@@ -58,7 +59,7 @@ Thus \(\mathcal D_r\) labels the pairs already present in \(H_0\), while
 \(\mathcal B_r\) labels the bonds connecting neighboring pairs.
 
 The common reference Hamiltonian is the isolated-dimer spinful Hubbard model
-with \(t_d=1\):
+with \(t_d=1\) [[1](#references), [2](#references)]:
 
 \[
 H_0=\sum_{r=1}^{L/2}
@@ -93,7 +94,8 @@ report, not standard names from the Hubbard-model literature.
   \(\|m_S^{\mathrm{SDP}}(0)-m_S^{\mathrm{phys}}(0)\|\).
 - Response-matching error:
   \(\|D_hm_S^{\mathrm{SDP}}(0)-D_hm_S^{\mathrm{phys}}(0)\|\), the norm of the
-  difference between the SDP and physical first-order response matrices.
+  difference between the SDP and physical first-order response matrices, in the
+  Kubo linear-response sense [[6](#references)].
 - Mismatch ratio:
   \(\|\delta m_S(\theta)\|/|\theta|\), where
   \(\delta m_S(\theta)=m_S^{\mathrm{SDP}}(\theta)-m_S^{\mathrm{phys}}(\theta)\).
@@ -112,29 +114,11 @@ first-order changes of this vector are when small fields \(h_a\) are applied.
 A mismatch ratio near \(0.21\) means that the SDP and physical selected-moment
 vectors differ by about \(0.21|\theta|\) in norm over the tested range.
 
-## Terminology And References
-
-- The terms "Hubbard model", "spinful Hubbard chain", "hopping", "onsite
-  interaction", "half filling", and "double occupancy" follow the standard
-  Hubbard-model terminology; see Hubbard's original paper and standard
-  treatments of the one-dimensional Hubbard model [[1](#references),
-  [2](#references)].
-- The words "dimerized" and "alternating" refer to chains with alternating
-  bond strengths; this terminology is standard in the dimerized or alternating
-  Hubbard-chain literature [[3](#references), [4](#references)].
-- The term "extended Hubbard model" refers here to adding an intersite
-  density-density interaction to the onsite Hubbard interaction; this is the
-  standard usage in the extended-Hubbard literature [[5](#references)].
-- "Response matrix" is used in the usual static linear-response sense,
-  following the Kubo linear-response terminology [[6](#references)].
-- "Semidefinite programming" follows the standard convex-optimization
-  terminology of Vandenberghe and Boyd [[7](#references)].
-
 ## Model 1: Standard Dimerized Spinful Hubbard Chain
 
 **Model.** The first model is the standard alternating-hopping spinful Hubbard
-chain. It uses the common reference Hamiltonian \(H_0\) above and the
-inter-dimer hopping perturbation
+chain [[3](#references), [4](#references)]. It uses the common reference
+Hamiltonian \(H_0\) above and the inter-dimer hopping perturbation
 
 \[
 V_{\mathrm{hop}}
@@ -228,8 +212,8 @@ K_{2,3},\qquad K_{4,5}.
 ## Model 2: Density-Perturbed Extended Spinful Hubbard Dimer Chain
 
 **Model.** The second model uses the same isolated Hubbard-dimer reference
-\(H_0\), but replaces the hopping perturbation by an inter-dimer density-density
-perturbation:
+\(H_0\), but replaces hopping by an inter-dimer density-density perturbation,
+as in the extended-Hubbard setting [[5](#references)]:
 
 \[
 V_{\mathrm{dens}}
